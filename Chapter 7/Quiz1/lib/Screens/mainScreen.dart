@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Results/resultsMainScreen.dart';
 import 'package:flutter_application_1/Screens/ProfilePage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                 BigButtonCard(
                   buttonText: 'Results',
                   icon: Icons.poll,
-                  route: '/results',
+                  route: '/blahblah',
                   username: username,
                   email: email,
                 ),

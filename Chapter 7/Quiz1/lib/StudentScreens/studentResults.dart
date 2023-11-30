@@ -1,37 +1,39 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Database/config.dart';
 import 'package:http/http.dart' as http;
 
-class StudentResults extends StatefulWidget {
+class StudentResultsPage extends StatefulWidget {
+  final String username;
+
+  StudentResultsPage({required this.username});
   @override
-  State<StudentResults> createState() => _StudentResultsState();
+  State<StudentResultsPage> createState() => _StudentResultsPageState();
 }
 
-class _StudentResultsState extends State<StudentResults> {
-  List<Results> results = [];
+class _StudentResultsPageState extends State<StudentResultsPage> {
+  List<Results> UserResults = [];
 
   @override
   void initState() {
     super.initState();
-    fetchresultsData();
+    fetchResults();
   }
 
-  Future<void> fetchresultsData() async {
+  Future<void> fetchResults() async {
     final response = await http.get(Uri.parse(resultsUrl));
 
     if (response.statusCode == 200) {
-      // Parse the JSON data
-      List<dynamic> data = json.decode(response.body);
-      List<Results> fetchedData =
-          data.map((json) => Results.fromJson(json)).toList();
+      final List<dynamic> jsonResults = json.decode(response.body);
+      List<Results> fetchedResults = jsonResults
+          .map((json) => Results.fromJson(json))
+          .where((result) => result.student == widget.username)
+          .toList();
 
-      setState(() {
-        results = fetchedData;
-      });
+      UserResults = fetchedResults;
     } else {
-      // Handle error
-      print('Failed to load data: ${response.statusCode}');
+      throw Exception('Failed to load results');
     }
   }
 
@@ -40,10 +42,10 @@ class _StudentResultsState extends State<StudentResults> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text('All Results'),
+          title: Text('Results'),
         ),
         body: ListView.builder(
-          itemCount: results.length,
+          itemCount: UserResults.length,
           itemBuilder: (context, index) {
             return Card(
               margin: EdgeInsets.all(8.0),
@@ -53,33 +55,33 @@ class _StudentResultsState extends State<StudentResults> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      results[index].student,
+                      UserResults[index].student,
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      ' ${results[index].courseName}',
+                      ' ${UserResults[index].courseName}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 4.0),
                     Text(
-                      ' ${results[index].courseCode}',
+                      ' ${UserResults[index].courseCode}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 4.0),
                     Text(
-                      ' ${results[index].grade}',
+                      ' ${UserResults[index].grade}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 4.0),
                     Text(
-                      ' ${results[index].teacher}',
+                      ' ${UserResults[index].teacher}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 4.0),
                     Text(
-                      ' ${results[index].remarks}',
+                      ' ${UserResults[index].remarks}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 8.0),

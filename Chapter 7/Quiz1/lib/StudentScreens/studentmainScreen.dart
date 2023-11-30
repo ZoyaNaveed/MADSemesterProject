@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/StudentScreens/StudentProfilePage.dart';
+import 'package:flutter_application_1/StudentScreens/studentResults.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class StudentMainScreen extends StatefulWidget {
@@ -160,9 +161,8 @@ class BigButtonCard extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => StudentProfilePage(
+                builder: (context) => StudentResultsPage(
                   username: username,
-                  email: email,
                 ),
               ),
             );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+class ResultsOptionsPage extends StatelessWidget {
+  const ResultsOptionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,13 @@ class ResultsPage extends StatelessWidget {
               context,
               'See All Results',
               'View all Assignemnts uploaded',
-              '/seeResults',
+              '/seeresults',
             ),
             _buildOptionButton(
               context,
               'Upload Results',
               'Upload a new Assignment',
-              '/addResults',
+              '/addresults',
             ),
           ],
         ),

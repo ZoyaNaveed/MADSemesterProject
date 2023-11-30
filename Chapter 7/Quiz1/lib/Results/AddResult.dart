@@ -99,7 +99,7 @@ class _AddResultsState extends State<AddResults> {
           // Course added successfully
           print('Results added successfully');
           Navigator.push(
-              context, MaterialPageRoute(builder: (c) => ResultsPage()));
+              context, MaterialPageRoute(builder: (c) => ResultsOptionsPage()));
         }
       }
     } catch (error) {

@@ -9,6 +9,9 @@ import 'package:flutter_application_1/CoursesScreen/seeCourses.dart';
 import 'package:flutter_application_1/NotificationsScreens/NewNotifications.dart';
 import 'package:flutter_application_1/NotificationsScreens/SeeNotifications.dart';
 import 'package:flutter_application_1/NotificationsScreens/notifications.dart';
+import 'package:flutter_application_1/Results/AddResult.dart';
+import 'package:flutter_application_1/Results/ShowResults.dart';
+import 'package:flutter_application_1/Results/resultsMainScreen.dart';
 //import 'package:flutter_application_1/Screens/loginScreen.dart';
 import 'package:flutter_application_1/Screens/mainScreen.dart';
 import 'package:flutter_application_1/StudentScreens/StudentNotifications.dart';
@@ -54,11 +57,15 @@ class MyApp extends StatelessWidget {
           '/assignments': (context) => AssignmentsPage(),
           '/newAssignment': (context) => AddAssignmentsPage(),
           '/seeAssignment': (context) => SeeAssignments(),
+          //'results': (context) => ResultsPage(),
           '/home2': (context) => StudentMainScreen(),
           '/studentnots': (context) => AllNotifications(),
-          '/studentresults': (context) => StudentResults(),
+          //'/studentresults': (context) => StudentResults(),
+          '/blahblah': (context) => ResultsOptionsPage(),
+          '/addresults': (context) => AddResults(),
+          '/seeresults': (context) => SeeResultsPage(),
         },
-        home: HomePage(
+        home: StudentMainScreen(
           token: token,
         )); // (token != null && JwtDecoder.isExpired(token) == false)
     //     ? HomePage(token: token)
