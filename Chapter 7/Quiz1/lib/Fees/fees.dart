@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CoursesPage(),
-    );
-  }
-}
+class FeesPage extends StatelessWidget {
+  const FeesPage({super.key});
 
-class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Courses Page'),
+        title: Text('Fees Page'),
       ),
       body: Center(
         child: Column(
@@ -23,22 +16,16 @@ class CoursesPage extends StatelessWidget {
           children: [
             _buildOptionButton(
               context,
-              'See All Courses',
-              'View all available courses',
-              '/seeCourses',
+              'See All Fees',
+              'View all Fee Vouchers uploaded',
+              '/seeFees',
             ),
             _buildOptionButton(
               context,
-              'Add a Course',
-              'Add a new course to the list',
-              '/addCourse',
+              'Upload Fees',
+              'Upload New Fee Voucher',
+              '/uploadFees',
             ),
-            // _buildOptionButton(
-            //   context,
-            //   'Remove a Student',
-            //   'Remove a student from a course',
-            //   '/remove_student',
-            // ),
           ],
         ),
       ),

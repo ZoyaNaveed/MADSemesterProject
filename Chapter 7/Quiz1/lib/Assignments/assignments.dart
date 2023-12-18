@@ -17,7 +17,7 @@ class AssignmentsPage extends StatelessWidget {
             _buildOptionButton(
               context,
               'See All Assignments',
-              'View all Assignemnts uploaded',
+              'View all Assignements uploaded',
               '/seeAssignment',
             ),
             _buildOptionButton(

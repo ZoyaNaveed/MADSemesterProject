@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/StudentScreens/Registercourse.dart';
 import 'package:flutter_application_1/StudentScreens/StudentProfilePage.dart';
 import 'package:flutter_application_1/StudentScreens/studentResults.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -154,6 +155,14 @@ class BigButtonCard extends StatelessWidget {
                   username: username,
                   email: email,
                 ),
+              ),
+            );
+          }
+          if (route == '/studentcourses') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegistrationPage(),
               ),
             );
           }

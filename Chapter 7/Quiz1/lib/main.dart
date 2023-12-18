@@ -1,23 +1,27 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Assignments/AddAssignment.dart';
 import 'package:flutter_application_1/Assignments/SeeAssignments.dart';
+import 'package:flutter_application_1/Assignments/UploadAssignment.dart';
 import 'package:flutter_application_1/Assignments/assignments.dart';
 import 'package:flutter_application_1/CoursesScreen/AddCourses.dart';
 import 'package:flutter_application_1/CoursesScreen/courses.dart';
 import 'package:flutter_application_1/CoursesScreen/seeCourses.dart';
+import 'package:flutter_application_1/Fees/SeeAllFees.dart';
+import 'package:flutter_application_1/Fees/UploadFees.dart';
+import 'package:flutter_application_1/Fees/fees.dart';
 import 'package:flutter_application_1/NotificationsScreens/NewNotifications.dart';
 import 'package:flutter_application_1/NotificationsScreens/SeeNotifications.dart';
 import 'package:flutter_application_1/NotificationsScreens/notifications.dart';
 import 'package:flutter_application_1/Results/AddResult.dart';
 import 'package:flutter_application_1/Results/ShowResults.dart';
 import 'package:flutter_application_1/Results/resultsMainScreen.dart';
-//import 'package:flutter_application_1/Screens/loginScreen.dart';
 import 'package:flutter_application_1/Screens/mainScreen.dart';
+import 'package:flutter_application_1/StudentScreens/Registercourse.dart';
+import 'package:flutter_application_1/StudentScreens/StudentAssignment.dart';
+import 'package:flutter_application_1/StudentScreens/StudentFees.dart';
 import 'package:flutter_application_1/StudentScreens/StudentNotifications.dart';
 import 'package:flutter_application_1/StudentScreens/studentResults.dart';
 import 'package:flutter_application_1/StudentScreens/studentmainScreen.dart';
-//import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
@@ -55,15 +59,18 @@ class MyApp extends StatelessWidget {
           '/seeNots': (context) => SeeNotifications(),
           '/newNots': (context) => AddNotificationsPage(),
           '/assignments': (context) => AssignmentsPage(),
-          '/newAssignment': (context) => AddAssignmentsPage(),
+          '/newAssignment': (context) => AssignmentForm(),
           '/seeAssignment': (context) => SeeAssignments(),
-          //'results': (context) => ResultsPage(),
           '/home2': (context) => StudentMainScreen(),
           '/studentnots': (context) => AllNotifications(),
-          //'/studentresults': (context) => StudentResults(),
           '/blahblah': (context) => ResultsOptionsPage(),
           '/addresults': (context) => AddResults(),
           '/seeresults': (context) => SeeResultsPage(),
+          '/fees': (context) => FeesPage(),
+          '/seeFees': (context) => SeeFees(),
+          '/uploadFees': (context) => UploadFees(),
+          '/studentassignments': (context) => StudentAssignmentPage(),
+          '/studentfees': (context) => StudentFees(),
         },
         home: StudentMainScreen(
           token: token,

@@ -119,23 +119,6 @@ class _SeeResultsPageState extends State<SeeResultsPage> {
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        SizedBox(height: 8.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            // Call a function to handle course deletion
-                            //deleteCourse(notsUrl, numbers[index].id);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.grey, // Button color
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          child: Text(
-                            'Update',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        )
                       ],
                     ),
                   ],

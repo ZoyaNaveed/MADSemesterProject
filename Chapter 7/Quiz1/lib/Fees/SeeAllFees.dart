@@ -1,35 +1,35 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Database/config.dart';
 import 'package:http/http.dart' as http;
 
-class SeeAssignments extends StatefulWidget {
-  const SeeAssignments({super.key});
+class SeeFees extends StatefulWidget {
+  const SeeFees({super.key});
 
   @override
-  State<SeeAssignments> createState() => _SeeAssignmentsState();
+  State<SeeFees> createState() => _SeeFeesState();
 }
 
-class _SeeAssignmentsState extends State<SeeAssignments> {
-  List<Assignment> numbers = [];
+class _SeeFeesState extends State<SeeFees> {
+  List<Fees> numbers = [];
 
   @override
   void initState() {
     super.initState();
-    fetchassignsData();
+    fetchfeesData();
   }
 
-  Future<void> fetchassignsData() async {
-    final response = await http.get(Uri.parse(assignmentsUrl));
+  Future<void> fetchfeesData() async {
+    final response = await http.get(Uri.parse(feesUrl));
 
     if (response.statusCode == 200) {
       // Parse the JSON data
       List<dynamic> data = json.decode(response.body);
-      List<Assignment> fetchedassigns =
-          data.map((json) => Assignment.fromJson(json)).toList();
+      List<Fees> fetchedfees = data.map((json) => Fees.fromJson(json)).toList();
 
       setState(() {
-        numbers = fetchedassigns;
+        numbers = fetchedfees;
       });
     } else {
       // Handle error
@@ -37,15 +37,15 @@ class _SeeAssignmentsState extends State<SeeAssignments> {
     }
   }
 
-  Future<void> deleteassignment(String notsUrl, String notsId) async {
+  Future<void> deleteFees(String notsUrl, String notsId) async {
     final response = await http.delete(Uri.parse('$notsUrl/$notsId'));
 
     if (response.statusCode == 200) {
-      fetchassignsData();
+      fetchfeesData();
 
-      print('Assignment deleted successfully');
+      print('Fees deleted successfully');
     } else {
-      throw Exception('Failed to delete Assignment: ${response.statusCode}');
+      throw Exception('Failed to delete Fees: ${response.statusCode}');
     }
   }
 
@@ -54,7 +54,7 @@ class _SeeAssignmentsState extends State<SeeAssignments> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text('All Assignments'),
+          title: Text('All Fee Slips'),
         ),
         body: ListView.builder(
           itemCount: numbers.length,
@@ -67,19 +67,9 @@ class _SeeAssignmentsState extends State<SeeAssignments> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      numbers[index].title,
+                      numbers[index].session,
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      ' ${numbers[index].description}',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    SizedBox(height: 4.0),
-                    Text(
-                      ' ${numbers[index].CourseCode}',
-                      style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 4.0),
                     Text(
@@ -94,7 +84,7 @@ class _SeeAssignmentsState extends State<SeeAssignments> {
                         ElevatedButton(
                           onPressed: () {
                             // Call a function to handle course deletion
-                            deleteassignment(assignmentsUrl, numbers[index].id);
+                            deleteFees(feesUrl, numbers[index].id);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red, // Button color
@@ -118,28 +108,22 @@ class _SeeAssignmentsState extends State<SeeAssignments> {
   }
 }
 
-class Assignment {
+class Fees {
   final String id;
-  final String title;
-  final String description;
-  final String CourseCode;
+  final String session;
   final String deadline;
   final String content;
 
-  Assignment(
+  Fees(
       {required this.id,
-      required this.title,
-      required this.description,
-      required this.CourseCode,
+      required this.session,
       required this.deadline,
       required this.content});
 
-  factory Assignment.fromJson(Map<String, dynamic> json) {
-    return Assignment(
+  factory Fees.fromJson(Map<String, dynamic> json) {
+    return Fees(
         id: json['_id'],
-        title: json['title'],
-        description: json['description'],
-        CourseCode: json['courseCode'],
+        session: json['session'],
         deadline: json['deadline'],
         content: json['content']);
   }
